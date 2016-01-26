@@ -58,6 +58,16 @@ ALTER TABLE ONLY changesets_subscribers
 
 
 --
+-- Name: changesets_subscribers; Type: ACL; Schema: osm; Owner: osm
+--
+
+REVOKE ALL ON TABLE changesets_subscribers FROM PUBLIC;
+REVOKE ALL ON TABLE changesets_subscribers FROM osm;
+GRANT ALL ON TABLE changesets_subscribers TO osm;
+GRANT SELECT ON TABLE changesets_subscribers TO PUBLIC;
+
+
+--
 -- PostgreSQL database dump complete
 --
 

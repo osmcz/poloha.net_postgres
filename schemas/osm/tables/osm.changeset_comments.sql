@@ -91,6 +91,16 @@ ALTER TABLE ONLY changeset_comments
 
 
 --
+-- Name: changeset_comments; Type: ACL; Schema: osm; Owner: osm
+--
+
+REVOKE ALL ON TABLE changeset_comments FROM PUBLIC;
+REVOKE ALL ON TABLE changeset_comments FROM osm;
+GRANT ALL ON TABLE changeset_comments TO osm;
+GRANT SELECT ON TABLE changeset_comments TO PUBLIC;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
