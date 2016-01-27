@@ -85,6 +85,18 @@ REVOKE ALL ON TABLE jsonobjects FROM pedro;
 GRANT ALL ON TABLE jsonobjects TO pedro;
 GRANT SELECT ON TABLE jsonobjects TO PUBLIC;
 GRANT ALL ON TABLE jsonobjects TO marian;
+GRANT ALL ON TABLE jsonobjects TO zbycz;
+
+
+--
+-- Name: jsonobjects_id_seq; Type: ACL; Schema: osmtables; Owner: pedro
+--
+
+REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM pedro;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO pedro;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO marian;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO zbycz;
 
 
 --

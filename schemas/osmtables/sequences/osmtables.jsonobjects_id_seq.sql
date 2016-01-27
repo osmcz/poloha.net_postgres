@@ -33,6 +33,17 @@ ALTER SEQUENCE jsonobjects_id_seq OWNED BY jsonobjects.id;
 
 
 --
+-- Name: jsonobjects_id_seq; Type: ACL; Schema: osmtables; Owner: pedro
+--
+
+REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM pedro;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO pedro;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO marian;
+GRANT ALL ON SEQUENCE jsonobjects_id_seq TO zbycz;
+
+
+--
 -- PostgreSQL database dump complete
 --
 

@@ -65,6 +65,8 @@ CREATE ROLE taskman;
 ALTER ROLE taskman WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION;
 CREATE ROLE tilestache;
 ALTER ROLE tilestache WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION;
+CREATE ROLE zbycz;
+ALTER ROLE zbycz WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION;
 ALTER ROLE buildings SET search_path TO buildings, import, public, topology;
 ALTER ROLE buildings SET work_mem TO '256MB';
 ALTER ROLE buildings SET default_tablespace TO 'pgmapnik';
@@ -93,6 +95,7 @@ ALTER ROLE simplesaml SET search_path TO simplesaml;
 ALTER ROLE studanky SET search_path TO studanky, public;
 ALTER ROLE taskman SET search_path TO taskman, public;
 ALTER ROLE tilestache SET client_encoding TO 'unicode';
+ALTER ROLE zbycz SET search_path TO zbycz, public;
 
 
 --
