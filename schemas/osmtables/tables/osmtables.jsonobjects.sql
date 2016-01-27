@@ -23,7 +23,7 @@ CREATE TABLE jsonobjects (
     id integer NOT NULL,
     zoom_min smallint NOT NULL,
     zoom_max smallint NOT NULL,
-    k text,
+    k text NOT NULL,
     v text,
     flag gis.incexc NOT NULL,
     CONSTRAINT minmax CHECK ((((zoom_min <= zoom_max) AND (zoom_min > 7)) AND (zoom_max < 30)))
@@ -58,6 +58,22 @@ ALTER SEQUENCE jsonobjects_id_seq OWNED BY jsonobjects.id;
 --
 
 ALTER TABLE ONLY jsonobjects ALTER COLUMN id SET DEFAULT nextval('jsonobjects_id_seq'::regclass);
+
+
+--
+-- Name: jsonobjects_id_key; Type: CONSTRAINT; Schema: osmtables; Owner: pedro; Tablespace: 
+--
+
+ALTER TABLE ONLY jsonobjects
+    ADD CONSTRAINT jsonobjects_id_key PRIMARY KEY (id);
+
+
+--
+-- Name: jsonobjects_k_v_unique; Type: CONSTRAINT; Schema: osmtables; Owner: pedro; Tablespace: 
+--
+
+ALTER TABLE ONLY jsonobjects
+    ADD CONSTRAINT jsonobjects_k_v_unique UNIQUE (k, v);
 
 
 --
