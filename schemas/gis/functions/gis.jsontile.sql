@@ -32,7 +32,6 @@ return (
                  and osm.k not in (select k from osmtables.jsonobjects where flag='E' and v_z >= zoom_min and v_z <= zoom_max and v is NULL)
                  and osm.k || osm.v not in (select k || v from osmtables.jsonobjects where flag='E' and v_z >= zoom_min and v_z <= zoom_max)
            WHERE st_intersects(v_bbox,gis.way)
-                 and import.isphysical('node',gis.osm_id)
                  and gis.isincluded(v_z::smallint,'node'::import.co,gis.osm_id::bigint)
            GROUP BY gis.osm_id, gis.way
           ) foo
