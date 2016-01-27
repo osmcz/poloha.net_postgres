@@ -19,14 +19,16 @@ CREATE FUNCTION jsontile(v_z integer, v_x integer, v_y integer) RETURNS json
     LANGUAGE plpgsql COST 50
     AS $$
 declare
+v_bbox geometry;
 BEGIN
+v_bbox = gis.tile2bbox(v_z,v_x,v_y);
 return (
          SELECT json_build_object('type', 'FeatureCollection', 'features', json_agg(foo.json)) AS json_build_object
-         FROM ( SELECT json_build_object('type', 'Feature', 'geometry', st_asgeojson(st_transform(gis.way, 4326))::json,
+         FROM ( SELECT json_build_object('type', 'Feature', 'geometry', st_asgeojson(st_transform(gis.way, 4326),5,0)::json,
                        'properties', json_build_object('osm_type', 'point', 'osm_id', gis.osm_id, 'tags', json_object_agg(osm.k, osm.v))) AS json
            FROM gis.cz_point gis
                LEFT JOIN osm.current_node_tags osm ON gis.osm_id = osm.node_id and osm.k not in (select k from osmtables.supplemental_tags)
-           WHERE st_intersects(gis.tile2bbox(v_z,v_x,v_y),gis.way) and import.isphysical('node',gis.osm_id)
+           WHERE st_intersects(v_bbox,gis.way) and import.isphysical('node',gis.osm_id)
            GROUP BY gis.osm_id, gis.way
           ) foo
        );
