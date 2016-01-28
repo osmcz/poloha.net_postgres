@@ -22,7 +22,6 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 6	8	15	place	city	I
 8	9	15	place	town	I
 9	12	15	place	village	I
-10	11	25	natural	peak	I
 2	14	17	amenity	bench	E
 3	14	17	amenity	recycling	E
 11	15	17	amenity	shower	E
@@ -51,6 +50,30 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 36	16	25	tourism	caravan_site	I
 37	16	25	tourism	wilderness_hut	I
 38	15	25	historic	\N	I
+39	15	25	man_made	campanile,	I
+40	15	25	man_made	communications_tower,	I
+41	15	25	man_made	cross,	I
+42	15	25	man_made	monitoring_station,	I
+43	15	25	man_made	observatory,	I
+44	15	25	man_made	tower,	I
+45	15	25	man_made	watermill,	I
+46	18	25	man_made	water_well,	I
+47	15	25	man_made	works,	I
+48	16	25	natural	water	I
+49	16	25	natural	spring	I
+50	16	25	natural	hot_spring	I
+51	16	25	natural	geyser	I
+52	16	25	natural	rock	I
+53	16	25	natural	stone	I
+54	16	25	natural	cave_entrance	I
+55	16	25	denotation	natural_monument	I
+56	18	25	emergency	\N	I
+57	15	25	emergency	ambulance_station	I
+10	14	25	natural	peak	I
+58	14	25	railway	halt	I
+59	14	25	railway	stop	I
+60	14	25	railway	station	I
+62	14	25	railway	tram_stop	I
 \.
 
 
@@ -58,7 +81,7 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 -- Name: jsonobjects_id_seq; Type: SEQUENCE SET; Schema: osmtables; Owner: pedro
 --
 
-SELECT pg_catalog.setval('jsonobjects_id_seq', 38, true);
+SELECT pg_catalog.setval('jsonobjects_id_seq', 62, true);
 
 
 --

@@ -120,6 +120,13 @@ CREATE INDEX cz_point_pkey ON cz_point USING btree (osm_id);
 
 
 --
+-- Name: cz_point_place; Type: INDEX; Schema: gis; Owner: mapnik; Tablespace: 
+--
+
+CREATE INDEX cz_point_place ON cz_point USING btree (((place IS NOT NULL)));
+
+
+--
 -- Name: cz_point; Type: ACL; Schema: gis; Owner: mapnik
 --
 

@@ -22,6 +22,21 @@ declare
 v_bbox geometry;
 BEGIN
 v_bbox = gis.tile2bbox(v_z,v_x,v_y);
+if v_z <= 13 then
+return (
+         SELECT json_build_object('type', 'FeatureCollection', 'features', json_agg(foo.json)) AS json_build_object
+         FROM ( SELECT json_build_object('type', 'Feature', 'geometry', st_asgeojson(st_transform(gis.way, 4326),5,0)::json,
+                       'properties', json_build_object('osm_type', 'point', 'osm_id', gis.osm_id, 'tags', json_object_agg(osm.k, osm.v))) AS json
+           FROM (select osm_id,way from gis.cz_point where place is not NULL and st_intersects(v_bbox,way)) gis
+               LEFT JOIN osm.current_node_tags osm ON
+                 gis.osm_id = osm.node_id and osm.k not in (select k from osmtables.supplemental_tags)
+                 and osm.k not in (select k from osmtables.jsonobjects where flag='E' and v_z >= zoom_min and v_z <= zoom_max and v is NULL)
+                 and osm.k || osm.v not in (select k || v from osmtables.jsonobjects where flag='E' and v_z >= zoom_min and v_z <= zoom_max)
+	   where gis.isincluded(v_z::smallint,'node'::import.co,gis.osm_id::bigint)
+           GROUP BY gis.osm_id, gis.way
+          ) foo
+       );
+else
 return (
          SELECT json_build_object('type', 'FeatureCollection', 'features', json_agg(foo.json)) AS json_build_object
          FROM ( SELECT json_build_object('type', 'Feature', 'geometry', st_asgeojson(st_transform(gis.way, 4326),5,0)::json,
@@ -36,6 +51,7 @@ return (
            GROUP BY gis.osm_id, gis.way
           ) foo
        );
+end if;
   END;
 $$;
 
