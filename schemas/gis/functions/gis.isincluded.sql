@@ -21,22 +21,61 @@ CREATE FUNCTION isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) RE
 declare
 v_i bigint;
 BEGIN
-select into v_i tags.node_id
-  from osm.current_node_tags tags
-    left join osmtables.jsonobjects inc on
-      inc.flag='I'
-      and v_zoom >= inc.zoom_min
-      and v_zoom <= inc.zoom_max
-      and tags.k=inc.k
-      and (tags.v=inc.v or inc.v is NULL)
-    left join osmtables.jsonobjects exc on
-      exc.flag='E'
-      and v_zoom >= exc.zoom_min
-      and v_zoom <= exc.zoom_max
-      and tags.k=exc.k
-      and (tags.v=exc.v or exc.v is NULL)
-where tags.node_id=v_osmid and inc.id is not NULL and exc.id is NULL
-limit 1;
+case
+when v_type = 'node' then
+	select into v_i tags.node_id
+	  from osm.current_node_tags tags
+	    left join osmtables.jsonobjects inc on
+	      inc.flag='I'
+	      and v_zoom >= inc.zoom_min
+	      and v_zoom <= inc.zoom_max
+	      and tags.k=inc.k
+	      and (tags.v=inc.v or inc.v is NULL)
+	    left join osmtables.jsonobjects exc on
+	      exc.flag='E'
+	      and v_zoom >= exc.zoom_min
+	      and v_zoom <= exc.zoom_max
+	      and tags.k=exc.k
+	      and (tags.v=exc.v or exc.v is NULL)
+	where tags.node_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	limit 1;
+when v_type = 'way' then
+	select into v_i tags.way_id
+	  from osm.current_way_tags tags
+	    left join osmtables.jsonobjects inc on
+	      inc.flag='I'
+	      and v_zoom >= inc.zoom_min
+	      and v_zoom <= inc.zoom_max
+	      and tags.k=inc.k
+	      and (tags.v=inc.v or inc.v is NULL)
+	    left join osmtables.jsonobjects exc on
+	      exc.flag='E'
+	      and v_zoom >= exc.zoom_min
+	      and v_zoom <= exc.zoom_max
+	      and tags.k=exc.k
+	      and (tags.v=exc.v or exc.v is NULL)
+	where tags.way_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	limit 1;
+when v_type = 'relation' then
+	select into v_i tags.relation_id
+	  from osm.current_relation_tags tags
+	    left join osmtables.jsonobjects inc on
+	      inc.flag='I'
+	      and v_zoom >= inc.zoom_min
+	      and v_zoom <= inc.zoom_max
+	      and tags.k=inc.k
+	      and (tags.v=inc.v or inc.v is NULL)
+	    left join osmtables.jsonobjects exc on
+	      exc.flag='E'
+	      and v_zoom >= exc.zoom_min
+	      and v_zoom <= exc.zoom_max
+	      and tags.k=exc.k
+	      and (tags.v=exc.v or exc.v is NULL)
+	where tags.relation_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	limit 1;
+else
+	return NULL::boolean;
+end case;
 return v_i is not NULL;
   END;
 $$;
