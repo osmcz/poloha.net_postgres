@@ -24,7 +24,8 @@ CREATE TABLE tilecache (
     x integer NOT NULL,
     y integer NOT NULL,
     created timestamp with time zone DEFAULT now(),
-    tile json
+    tile json,
+    times_read integer DEFAULT 0
 );
 
 
