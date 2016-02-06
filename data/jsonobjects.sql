@@ -67,7 +67,6 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 46	18	25	man_made	water_well	I
 47	15	25	man_made	works	I
 5	17	25	shop	\N	I
-63	17	25	shop	no	E
 66	15	25	amenity	college	I
 67	15	25	amenity	kindergarten	I
 68	15	25	amenity	library	I
@@ -112,6 +111,17 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 106	15	25	leisure	garden	E
 107	15	25	power	generator	I
 108	15	19	leisure	common	E
+109	18	25	opening_hours	\N	I
+63	18	25	shop	no	E
+110	15	25	shop	department_store	I
+111	15	25	shop	mall	I
+112	15	25	shop	supermarket	I
+113	16	25	shop	bakery	I
+114	16	25	shop	convenience	I
+115	16	25	shop	general	I
+116	16	25	shop	kiosk	I
+118	14	25	operator	cz:KÈT	I
+121	15	25	military	\N	I
 \.
 
 
@@ -119,7 +129,7 @@ COPY jsonobjects (id, zoom_min, zoom_max, k, v, flag) FROM stdin;
 -- Name: jsonobjects_id_seq; Type: SEQUENCE SET; Schema: osmtables; Owner: pedro
 --
 
-SELECT pg_catalog.setval('jsonobjects_id_seq', 108, true);
+SELECT pg_catalog.setval('jsonobjects_id_seq', 121, true);
 
 
 --

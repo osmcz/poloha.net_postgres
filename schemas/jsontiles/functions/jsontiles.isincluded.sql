@@ -9,10 +9,10 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-SET search_path = gis, pg_catalog;
+SET search_path = jsontiles, pg_catalog;
 
 --
--- Name: isincluded(smallint, import.co, bigint); Type: FUNCTION; Schema: gis; Owner: pedro
+-- Name: isincluded(smallint, import.co, bigint); Type: FUNCTION; Schema: jsontiles; Owner: pedro
 --
 
 CREATE FUNCTION isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) RETURNS boolean
@@ -23,8 +23,8 @@ v_i bigint;
 BEGIN
 case
 when v_type = 'node' then
-	select into v_i tags.node_id
-	  from osm.current_node_tags tags
+	select into v_i count(*)
+	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.nodes where id=v_osmid) tags
 	    left join osmtables.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
@@ -37,11 +37,11 @@ when v_type = 'node' then
 	      and v_zoom <= exc.zoom_max
 	      and tags.k=exc.k
 	      and (tags.v=exc.v or exc.v is NULL)
-	where tags.node_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	where inc.id is not NULL and exc.id is NULL
 	limit 1;
 when v_type = 'way' then
-	select into v_i tags.way_id
-	  from osm.current_way_tags tags
+	select into v_i count(*)
+	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.ways where id=v_osmid) tags
 	    left join osmtables.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
@@ -54,11 +54,11 @@ when v_type = 'way' then
 	      and v_zoom <= exc.zoom_max
 	      and tags.k=exc.k
 	      and (tags.v=exc.v or exc.v is NULL)
-	where tags.way_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	where inc.id is not NULL and exc.id is NULL
 	limit 1;
 when v_type = 'relation' then
-	select into v_i tags.relation_id
-	  from osm.current_relation_tags tags
+	select into v_i count(*)
+	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.rels where id=v_osmid) tags
 	    left join osmtables.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
@@ -71,17 +71,17 @@ when v_type = 'relation' then
 	      and v_zoom <= exc.zoom_max
 	      and tags.k=exc.k
 	      and (tags.v=exc.v or exc.v is NULL)
-	where tags.relation_id=v_osmid and inc.id is not NULL and exc.id is NULL
+	where inc.id is not NULL and exc.id is NULL
 	limit 1;
 else
 	return NULL::boolean;
 end case;
-return v_i is not NULL;
+return v_i > 0;
   END;
 $$;
 
 
-ALTER FUNCTION gis.isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) OWNER TO pedro;
+ALTER FUNCTION jsontiles.isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) OWNER TO pedro;
 
 --
 -- PostgreSQL database dump complete
