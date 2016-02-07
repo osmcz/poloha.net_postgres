@@ -9,10 +9,10 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-SET search_path = osmtables, pg_catalog;
+SET search_path = jsontiles, pg_catalog;
 
 --
--- Name: jsonobjects_id_seq; Type: SEQUENCE; Schema: osmtables; Owner: pedro
+-- Name: jsonobjects_id_seq; Type: SEQUENCE; Schema: jsontiles; Owner: pedro
 --
 
 CREATE SEQUENCE jsonobjects_id_seq
@@ -26,21 +26,20 @@ CREATE SEQUENCE jsonobjects_id_seq
 ALTER TABLE jsonobjects_id_seq OWNER TO pedro;
 
 --
--- Name: jsonobjects_id_seq; Type: SEQUENCE OWNED BY; Schema: osmtables; Owner: pedro
+-- Name: jsonobjects_id_seq; Type: SEQUENCE OWNED BY; Schema: jsontiles; Owner: pedro
 --
 
 ALTER SEQUENCE jsonobjects_id_seq OWNED BY jsonobjects.id;
 
 
 --
--- Name: jsonobjects_id_seq; Type: ACL; Schema: osmtables; Owner: pedro
+-- Name: jsonobjects_id_seq; Type: ACL; Schema: jsontiles; Owner: pedro
 --
 
 REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM PUBLIC;
 REVOKE ALL ON SEQUENCE jsonobjects_id_seq FROM pedro;
 GRANT ALL ON SEQUENCE jsonobjects_id_seq TO pedro;
 GRANT ALL ON SEQUENCE jsonobjects_id_seq TO marian;
-GRANT ALL ON SEQUENCE jsonobjects_id_seq TO zbycz;
 
 
 --

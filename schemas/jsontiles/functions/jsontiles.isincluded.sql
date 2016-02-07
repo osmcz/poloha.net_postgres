@@ -12,10 +12,10 @@ SET client_min_messages = warning;
 SET search_path = jsontiles, pg_catalog;
 
 --
--- Name: isincluded(smallint, import.co, bigint); Type: FUNCTION; Schema: jsontiles; Owner: pedro
+-- Name: isincluded(smallint, co, bigint); Type: FUNCTION; Schema: jsontiles; Owner: pedro
 --
 
-CREATE FUNCTION isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) RETURNS boolean
+CREATE FUNCTION isincluded(v_zoom smallint, v_type co, v_osmid bigint) RETURNS boolean
     LANGUAGE plpgsql COST 2
     AS $$
 declare
@@ -25,13 +25,13 @@ case
 when v_type = 'node' then
 	select into v_i count(*)
 	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.nodes where id=v_osmid) tags
-	    left join osmtables.jsonobjects inc on
+	    left join jsontiles.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
 	      and v_zoom <= inc.zoom_max
 	      and tags.k=inc.k
 	      and (tags.v=inc.v or inc.v is NULL)
-	    left join osmtables.jsonobjects exc on
+	    left join jsontiles.jsonobjects exc on
 	      exc.flag='E'
 	      and v_zoom >= exc.zoom_min
 	      and v_zoom <= exc.zoom_max
@@ -42,13 +42,13 @@ when v_type = 'node' then
 when v_type = 'way' then
 	select into v_i count(*)
 	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.ways where id=v_osmid) tags
-	    left join osmtables.jsonobjects inc on
+	    left join jsontiles.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
 	      and v_zoom <= inc.zoom_max
 	      and tags.k=inc.k
 	      and (tags.v=inc.v or inc.v is NULL)
-	    left join osmtables.jsonobjects exc on
+	    left join jsontiles.jsonobjects exc on
 	      exc.flag='E'
 	      and v_zoom >= exc.zoom_min
 	      and v_zoom <= exc.zoom_max
@@ -59,13 +59,13 @@ when v_type = 'way' then
 when v_type = 'relation' then
 	select into v_i count(*)
 	  from (select skeys(hstore(tags)) k,svals(hstore(tags)) v from jsontiles.rels where id=v_osmid) tags
-	    left join osmtables.jsonobjects inc on
+	    left join jsontiles.jsonobjects inc on
 	      inc.flag='I'
 	      and v_zoom >= inc.zoom_min
 	      and v_zoom <= inc.zoom_max
 	      and tags.k=inc.k
 	      and (tags.v=inc.v or inc.v is NULL)
-	    left join osmtables.jsonobjects exc on
+	    left join jsontiles.jsonobjects exc on
 	      exc.flag='E'
 	      and v_zoom >= exc.zoom_min
 	      and v_zoom <= exc.zoom_max
@@ -81,7 +81,7 @@ return v_i > 0;
 $$;
 
 
-ALTER FUNCTION jsontiles.isincluded(v_zoom smallint, v_type import.co, v_osmid bigint) OWNER TO pedro;
+ALTER FUNCTION jsontiles.isincluded(v_zoom smallint, v_type co, v_osmid bigint) OWNER TO pedro;
 
 --
 -- PostgreSQL database dump complete

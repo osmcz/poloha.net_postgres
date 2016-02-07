@@ -29,7 +29,7 @@ if v_ret is not NULL then
   return v_ret;
 end if;
 v_bbox = jsontiles.tile2bbox(v_z,v_x,v_y);
-v_minustags = array(select k from osmtables.supplemental_tags);
+v_minustags = array(select k from jsontiles.minustags);
 if v_z <= 13 then
 	v_ret = (
          SELECT json_build_object('type', 'FeatureCollection', 'features', json_agg(foo.json)) AS json_build_object
@@ -37,7 +37,7 @@ if v_z <= 13 then
                        'properties', json_build_object('osm_type', 'node', 'osm_id', gis.osm_id, 'tags', hstore_to_json(hstore(nodes.tags)-v_minustags))) AS json
            FROM (select osm_id,way from jsontiles.point where place is not NULL and st_intersects(v_bbox,way)) gis
                LEFT JOIN jsontiles.nodes nodes ON nodes.id=gis.osm_id
-	   where jsontiles.isincluded(v_z::smallint,'node'::import.co,gis.osm_id::bigint)
+	   where jsontiles.isincluded(v_z::smallint,'node'::jsontiles.co,gis.osm_id::bigint)
            GROUP BY gis.osm_id, gis.way, nodes.tags
           ) foo
        );
@@ -56,7 +56,7 @@ else -- zoom >= 14
 		   FROM jsontiles.point gis
 			LEFT JOIN jsontiles.nodes nodes ON nodes.id=gis.osm_id
 		   WHERE st_intersects(v_bbox,gis.way)
-			 and jsontiles.isincluded(v_z::smallint,'node'::import.co,gis.osm_id::bigint)
+			 and jsontiles.isincluded(v_z::smallint,'node'::jsontiles.co,gis.osm_id::bigint)
 		   GROUP BY gis.osm_id, gis.way, nodes.tags
 
 		UNION ALL
@@ -77,7 +77,7 @@ else -- zoom >= 14
 	       LEFT JOIN jsontiles.rels osm_rels ON gis.osm_id < 0
 		 and -gis.osm_id = osm_rels.id
 	   WHERE st_intersects(v_bbox,gis.way) and st_intersects(v_bbox,st_pointonsurface(gis.way))
-		 and jsontiles.isincluded(v_z::smallint,case when gis.osm_id > 0 then 'way'::import.co else 'relation'::import.co end,abs(gis.osm_id)::bigint)
+		 and jsontiles.isincluded(v_z::smallint,case when gis.osm_id > 0 then 'way'::jsontiles.co else 'relation'::jsontiles.co end,abs(gis.osm_id)::bigint)
 	   GROUP BY gis.osm_id, gis.way, osm_ways.tags, osm_rels.tags
           ) foo
        );
