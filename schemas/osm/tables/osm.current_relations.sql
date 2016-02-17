@@ -26,7 +26,7 @@ CREATE TABLE current_relations (
     visible boolean NOT NULL,
     version bigint NOT NULL
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE current_relations OWNER TO osm;

@@ -47,6 +47,7 @@ REVOKE ALL ON TABLE tilecache FROM PUBLIC;
 REVOKE ALL ON TABLE tilecache FROM pedro;
 GRANT ALL ON TABLE tilecache TO pedro;
 GRANT SELECT ON TABLE tilecache TO PUBLIC;
+GRANT ALL ON TABLE tilecache TO mapnik;
 
 
 --

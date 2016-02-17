@@ -128,7 +128,7 @@ CREATE TABLE cz_line (
     "osmc:symbol" text,
     way public.geometry(LineString,900913)
 )
-WITH (autovacuum_enabled=true, autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_enabled='true', autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE cz_line OWNER TO mapnik;

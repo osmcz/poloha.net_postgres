@@ -39,7 +39,7 @@ CREATE TABLE rn_cast_obce (
     item_timestamp timestamp without time zone DEFAULT timezone('utc'::text, now()),
     deleted boolean DEFAULT false
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE rn_cast_obce OWNER TO ruian;

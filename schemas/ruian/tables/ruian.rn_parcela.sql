@@ -37,7 +37,7 @@ CREATE TABLE rn_parcela (
     item_timestamp timestamp without time zone DEFAULT timezone('utc'::text, now()),
     deleted boolean DEFAULT false
 )
-WITH (autovacuum_enabled=true, autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02, toast.autovacuum_enabled=true, toast.autovacuum_vacuum_scale_factor=0.05);
+WITH (autovacuum_enabled='true', autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02', toast.autovacuum_enabled='true', toast.autovacuum_vacuum_scale_factor='0.05');
 
 
 ALTER TABLE rn_parcela OWNER TO ruian;

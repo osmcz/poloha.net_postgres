@@ -26,7 +26,7 @@ CREATE TABLE current_relation_members (
     member_role character varying(255) NOT NULL,
     sequence_id integer DEFAULT 0 NOT NULL
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE current_relation_members OWNER TO osm;

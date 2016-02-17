@@ -40,7 +40,7 @@ CREATE TABLE rn_katastralni_uzemi (
     item_timestamp timestamp without time zone DEFAULT timezone('utc'::text, now()),
     deleted boolean DEFAULT false
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE rn_katastralni_uzemi OWNER TO ruian;

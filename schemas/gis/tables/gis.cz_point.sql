@@ -100,7 +100,7 @@ CREATE TABLE cz_point (
     osm_timestamp text,
     way public.geometry(Point,900913)
 )
-WITH (autovacuum_vacuum_scale_factor=0.01, autovacuum_analyze_scale_factor=0.01);
+WITH (autovacuum_vacuum_scale_factor='0.01', autovacuum_analyze_scale_factor='0.01');
 
 
 ALTER TABLE cz_point OWNER TO mapnik;

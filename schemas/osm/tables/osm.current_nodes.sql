@@ -29,7 +29,7 @@ CREATE TABLE current_nodes (
     tile bigint NOT NULL,
     version bigint NOT NULL
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE current_nodes OWNER TO osm;

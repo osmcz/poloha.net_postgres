@@ -37,7 +37,7 @@ CREATE TABLE rn_detailni_tea (
     nz_id_globalni bigint,
     deleted boolean DEFAULT false
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE rn_detailni_tea OWNER TO ruian;

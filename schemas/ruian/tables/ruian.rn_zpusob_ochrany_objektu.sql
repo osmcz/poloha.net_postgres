@@ -27,7 +27,7 @@ CREATE TABLE rn_zpusob_ochrany_objektu (
     rizeni_id bigint,
     deleted boolean DEFAULT false
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE rn_zpusob_ochrany_objektu OWNER TO ruian;

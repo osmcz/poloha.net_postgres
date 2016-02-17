@@ -24,7 +24,7 @@ CREATE TABLE current_way_nodes (
     node_id bigint NOT NULL,
     sequence_id bigint NOT NULL
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE current_way_nodes OWNER TO osm;

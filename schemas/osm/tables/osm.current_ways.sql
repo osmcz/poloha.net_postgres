@@ -26,7 +26,7 @@ CREATE TABLE current_ways (
     visible boolean NOT NULL,
     version bigint NOT NULL
 )
-WITH (autovacuum_vacuum_scale_factor=0.02, autovacuum_analyze_scale_factor=0.02);
+WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.02');
 
 
 ALTER TABLE current_ways OWNER TO osm;
@@ -65,13 +65,6 @@ ALTER TABLE ONLY current_ways ALTER COLUMN id SET DEFAULT nextval('current_ways_
 
 ALTER TABLE ONLY current_ways
     ADD CONSTRAINT current_ways_pkey PRIMARY KEY (id);
-
-
---
--- Name: current_ways_timestamp_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
---
-
-CREATE INDEX current_ways_timestamp_idx ON current_ways USING btree ("timestamp");
 
 
 --
