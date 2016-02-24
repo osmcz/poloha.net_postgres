@@ -23,12 +23,14 @@ CREATE TABLE cz_kct (
     osm_id bigint NOT NULL,
     route text,
     name text,
+    network text,
+    ref text,
     length integer,
     kct_yellow text,
     kct_green text,
     kct_blue text,
     kct_red text,
-    way public.geometry(LineString,900913)
+    way public.geometry
 );
 
 
