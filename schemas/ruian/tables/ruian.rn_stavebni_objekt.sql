@@ -101,13 +101,6 @@ CREATE INDEX rn_stavebni_objekt_momc_kod_idx ON rn_stavebni_objekt USING btree (
 
 
 --
--- Name: rn_stavebni_objekt_typ_kod_idx; Type: INDEX; Schema: ruian; Owner: ruian; Tablespace: 
---
-
-CREATE INDEX rn_stavebni_objekt_typ_kod_idx ON rn_stavebni_objekt USING btree (typ_kod);
-
-
---
 -- Name: rn_stavebni_objekt; Type: ACL; Schema: ruian; Owner: ruian
 --
 

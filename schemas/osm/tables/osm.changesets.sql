@@ -71,13 +71,6 @@ ALTER TABLE ONLY changesets
 
 
 --
--- Name: changesets_bbox_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
---
-
-CREATE INDEX changesets_bbox_idx ON changesets USING gist (min_lat, max_lat, min_lon, max_lon);
-
-
---
 -- Name: changesets_closed_at_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
 --
 

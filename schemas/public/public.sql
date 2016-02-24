@@ -19,7 +19,7 @@ GRANT ALL ON SCHEMA public TO pgsql;
 GRANT ALL ON SCHEMA public TO pedro;
 GRANT ALL ON SCHEMA public TO ruian;
 GRANT ALL ON SCHEMA public TO buildings;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+GRANT USAGE ON SCHEMA public TO PUBLIC;
 
 
 --
