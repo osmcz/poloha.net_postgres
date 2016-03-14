@@ -68,13 +68,6 @@ ALTER TABLE ONLY current_relations
 
 
 --
--- Name: current_relations_timestamp_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
---
-
-CREATE INDEX current_relations_timestamp_idx ON current_relations USING btree ("timestamp");
-
-
---
 -- Name: delete_relation; Type: TRIGGER; Schema: osm; Owner: osm
 --
 
