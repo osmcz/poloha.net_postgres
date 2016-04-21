@@ -85,7 +85,7 @@ end if;
 insert into jsontiles.tilecache(z,x,y,tile) values (v_z,v_x,v_y,v_ret);
 return v_ret;
 EXCEPTION WHEN unique_violation THEN
-    -- Do nothing
+    return v_ret;
 END;
 $$;
 
