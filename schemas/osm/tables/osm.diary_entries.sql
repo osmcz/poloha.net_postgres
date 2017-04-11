@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: diary_entries; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: diary_entries; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE diary_entries (
@@ -58,14 +63,14 @@ ALTER SEQUENCE diary_entries_id_seq OWNED BY diary_entries.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: diary_entries id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY diary_entries ALTER COLUMN id SET DEFAULT nextval('diary_entries_id_seq'::regclass);
 
 
 --
--- Name: diary_entries_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: diary_entries diary_entries_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY diary_entries
@@ -73,28 +78,28 @@ ALTER TABLE ONLY diary_entries
 
 
 --
--- Name: diary_entry_created_at_index; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: diary_entry_created_at_index; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX diary_entry_created_at_index ON diary_entries USING btree (created_at);
 
 
 --
--- Name: diary_entry_language_code_created_at_index; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: diary_entry_language_code_created_at_index; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX diary_entry_language_code_created_at_index ON diary_entries USING btree (language_code, created_at);
 
 
 --
--- Name: diary_entry_user_id_created_at_index; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: diary_entry_user_id_created_at_index; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX diary_entry_user_id_created_at_index ON diary_entries USING btree (user_id, created_at);
 
 
 --
--- Name: diary_entries_language_code_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: diary_entries diary_entries_language_code_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY diary_entries
@@ -102,7 +107,7 @@ ALTER TABLE ONLY diary_entries
 
 
 --
--- Name: diary_entries_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: diary_entries diary_entries_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY diary_entries
@@ -113,9 +118,6 @@ ALTER TABLE ONLY diary_entries
 -- Name: diary_entries; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE diary_entries FROM PUBLIC;
-REVOKE ALL ON TABLE diary_entries FROM osm;
-GRANT ALL ON TABLE diary_entries TO osm;
 GRANT SELECT ON TABLE diary_entries TO PUBLIC;
 
 

@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE schema_migrations (
@@ -27,7 +32,7 @@ CREATE TABLE schema_migrations (
 ALTER TABLE schema_migrations OWNER TO osm;
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -37,9 +42,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- Name: schema_migrations; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE schema_migrations FROM PUBLIC;
-REVOKE ALL ON TABLE schema_migrations FROM osm;
-GRANT ALL ON TABLE schema_migrations TO osm;
 GRANT SELECT ON TABLE schema_migrations TO PUBLIC;
 
 

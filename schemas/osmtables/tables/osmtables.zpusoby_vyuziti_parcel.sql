@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osmtables, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = true;
 
 --
--- Name: zpusoby_vyuziti_parcel; Type: TABLE; Schema: osmtables; Owner: pedro; Tablespace: 
+-- Name: zpusoby_vyuziti_parcel; Type: TABLE; Schema: osmtables; Owner: pedro
 --
 
 CREATE TABLE zpusoby_vyuziti_parcel (
@@ -55,7 +60,7 @@ ALTER SEQUENCE zpusoby_vyuziti_parcel_id_seq OWNED BY zpusoby_vyuziti_parcel.kod
 
 
 --
--- Name: kod; Type: DEFAULT; Schema: osmtables; Owner: pedro
+-- Name: zpusoby_vyuziti_parcel kod; Type: DEFAULT; Schema: osmtables; Owner: pedro
 --
 
 ALTER TABLE ONLY zpusoby_vyuziti_parcel ALTER COLUMN kod SET DEFAULT nextval('zpusoby_vyuziti_parcel_id_seq'::regclass);
@@ -65,9 +70,6 @@ ALTER TABLE ONLY zpusoby_vyuziti_parcel ALTER COLUMN kod SET DEFAULT nextval('zp
 -- Name: zpusoby_vyuziti_parcel; Type: ACL; Schema: osmtables; Owner: pedro
 --
 
-REVOKE ALL ON TABLE zpusoby_vyuziti_parcel FROM PUBLIC;
-REVOKE ALL ON TABLE zpusoby_vyuziti_parcel FROM pedro;
-GRANT ALL ON TABLE zpusoby_vyuziti_parcel TO pedro;
 GRANT SELECT ON TABLE zpusoby_vyuziti_parcel TO PUBLIC;
 
 
@@ -75,8 +77,6 @@ GRANT SELECT ON TABLE zpusoby_vyuziti_parcel TO PUBLIC;
 -- Name: zpusoby_vyuziti_parcel.tagy; Type: ACL; Schema: osmtables; Owner: pedro
 --
 
-REVOKE ALL(tagy) ON TABLE zpusoby_vyuziti_parcel FROM PUBLIC;
-REVOKE ALL(tagy) ON TABLE zpusoby_vyuziti_parcel FROM pedro;
 GRANT UPDATE(tagy) ON TABLE zpusoby_vyuziti_parcel TO marian;
 
 

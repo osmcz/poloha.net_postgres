@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = gis, pg_catalog;
 
@@ -57,26 +62,6 @@ CREATE AGGREGATE networkmax(text) (
 
 
 ALTER AGGREGATE gis.networkmax(text) OWNER TO pedro;
-
---
--- Name: networkmax(text, text); Type: ACL; Schema: gis; Owner: pedro
---
-
-REVOKE ALL ON FUNCTION networkmax(state text, p text) FROM PUBLIC;
-REVOKE ALL ON FUNCTION networkmax(state text, p text) FROM pedro;
-GRANT ALL ON FUNCTION networkmax(state text, p text) TO pedro;
-GRANT ALL ON FUNCTION networkmax(state text, p text) TO PUBLIC;
-
-
---
--- Name: networkmax(text); Type: ACL; Schema: gis; Owner: pedro
---
-
-REVOKE ALL ON FUNCTION networkmax(text) FROM PUBLIC;
-REVOKE ALL ON FUNCTION networkmax(text) FROM pedro;
-GRANT ALL ON FUNCTION networkmax(text) TO pedro;
-GRANT ALL ON FUNCTION networkmax(text) TO PUBLIC;
-
 
 --
 -- PostgreSQL database dump complete

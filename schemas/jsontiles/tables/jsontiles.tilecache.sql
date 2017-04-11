@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = jsontiles, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: tilecache; Type: TABLE; Schema: jsontiles; Owner: pedro; Tablespace: 
+-- Name: tilecache; Type: TABLE; Schema: jsontiles; Owner: pedro
 --
 
 CREATE TABLE tilecache (
@@ -32,7 +37,7 @@ CREATE TABLE tilecache (
 ALTER TABLE tilecache OWNER TO pedro;
 
 --
--- Name: tilecache_pkey; Type: CONSTRAINT; Schema: jsontiles; Owner: pedro; Tablespace: 
+-- Name: tilecache tilecache_pkey; Type: CONSTRAINT; Schema: jsontiles; Owner: pedro
 --
 
 ALTER TABLE ONLY tilecache
@@ -43,9 +48,6 @@ ALTER TABLE ONLY tilecache
 -- Name: tilecache; Type: ACL; Schema: jsontiles; Owner: pedro
 --
 
-REVOKE ALL ON TABLE tilecache FROM PUBLIC;
-REVOKE ALL ON TABLE tilecache FROM pedro;
-GRANT ALL ON TABLE tilecache TO pedro;
 GRANT SELECT ON TABLE tilecache TO PUBLIC;
 GRANT ALL ON TABLE tilecache TO mapnik;
 

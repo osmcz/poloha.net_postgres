@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osmexport, pg_catalog;
 
@@ -30,11 +35,8 @@ ALTER TABLE way_tags OWNER TO pedro;
 -- Name: way_tags; Type: ACL; Schema: osmexport; Owner: pedro
 --
 
-REVOKE ALL ON TABLE way_tags FROM PUBLIC;
-REVOKE ALL ON TABLE way_tags FROM pedro;
-GRANT ALL ON TABLE way_tags TO pedro;
-GRANT SELECT ON TABLE way_tags TO osmexport;
 GRANT SELECT ON TABLE way_tags TO PUBLIC;
+GRANT SELECT ON TABLE way_tags TO osmexport;
 
 
 --

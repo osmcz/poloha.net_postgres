@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
@@ -187,7 +192,7 @@ CREATE VIEW osm_adresy_view AS
      LEFT JOIN osm.current_nodes nodes ON (((foo3.id = nodes.id) AND (foo3.co = 'node'::text))))
      LEFT JOIN osm.current_ways ways ON (((foo3.id = ways.id) AND (foo3.co = 'way'::text))))
      LEFT JOIN osm.current_relations relations ON (((foo3.id = relations.id) AND (foo3.co = 'relation'::text))))
-  WHERE (((((((foo3.conscriptionnumber IS NOT NULL) OR (foo3.provisionalnumber IS NOT NULL)) OR (foo3.streetnumber IS NOT NULL)) OR (foo3.housenumber IS NOT NULL)) OR (foo3.street IS NOT NULL)) OR (foo3.refruianaddr IS NOT NULL)) OR (foo3.refruian IS NOT NULL));
+  WHERE ((foo3.conscriptionnumber IS NOT NULL) OR (foo3.provisionalnumber IS NOT NULL) OR (foo3.streetnumber IS NOT NULL) OR (foo3.housenumber IS NOT NULL) OR (foo3.street IS NOT NULL) OR (foo3.refruianaddr IS NOT NULL) OR (foo3.refruian IS NOT NULL));
 
 
 ALTER TABLE osm_adresy_view OWNER TO import;
@@ -196,9 +201,6 @@ ALTER TABLE osm_adresy_view OWNER TO import;
 -- Name: osm_adresy_view; Type: ACL; Schema: import; Owner: import
 --
 
-REVOKE ALL ON TABLE osm_adresy_view FROM PUBLIC;
-REVOKE ALL ON TABLE osm_adresy_view FROM import;
-GRANT ALL ON TABLE osm_adresy_view TO import;
 GRANT SELECT ON TABLE osm_adresy_view TO PUBLIC;
 
 

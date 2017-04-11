@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -105,16 +110,6 @@ $$;
 
 
 ALTER FUNCTION public.local_simplify_polygon(v_geom geometry) OWNER TO pedro;
-
---
--- Name: local_simplify_polygon(geometry); Type: ACL; Schema: public; Owner: pedro
---
-
-REVOKE ALL ON FUNCTION local_simplify_polygon(v_geom geometry) FROM PUBLIC;
-REVOKE ALL ON FUNCTION local_simplify_polygon(v_geom geometry) FROM pedro;
-GRANT ALL ON FUNCTION local_simplify_polygon(v_geom geometry) TO pedro;
-GRANT ALL ON FUNCTION local_simplify_polygon(v_geom geometry) TO PUBLIC;
-
 
 --
 -- PostgreSQL database dump complete

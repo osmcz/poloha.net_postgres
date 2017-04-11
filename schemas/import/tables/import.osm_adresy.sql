@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = true;
 
 --
--- Name: osm_adresy; Type: TABLE; Schema: import; Owner: import0; Tablespace: 
+-- Name: osm_adresy; Type: TABLE; Schema: import; Owner: import0
 --
 
 CREATE TABLE osm_adresy (
@@ -52,7 +57,7 @@ CREATE TABLE osm_adresy (
 ALTER TABLE osm_adresy OWNER TO import0;
 
 --
--- Name: osm_adresy_pkey; Type: CONSTRAINT; Schema: import; Owner: import0; Tablespace: 
+-- Name: osm_adresy osm_adresy_pkey; Type: CONSTRAINT; Schema: import; Owner: import0
 --
 
 ALTER TABLE ONLY osm_adresy
@@ -60,14 +65,14 @@ ALTER TABLE ONLY osm_adresy
 
 
 --
--- Name: osm_adresy_geom; Type: INDEX; Schema: import; Owner: import0; Tablespace: 
+-- Name: osm_adresy_geom; Type: INDEX; Schema: import; Owner: import0
 --
 
 CREATE INDEX osm_adresy_geom ON osm_adresy USING gist (geom);
 
 
 --
--- Name: osm_adresy_id; Type: INDEX; Schema: import; Owner: import0; Tablespace: 
+-- Name: osm_adresy_id; Type: INDEX; Schema: import; Owner: import0
 --
 
 CREATE INDEX osm_adresy_id ON osm_adresy USING btree (id);
@@ -77,9 +82,6 @@ CREATE INDEX osm_adresy_id ON osm_adresy USING btree (id);
 -- Name: osm_adresy; Type: ACL; Schema: import; Owner: import0
 --
 
-REVOKE ALL ON TABLE osm_adresy FROM PUBLIC;
-REVOKE ALL ON TABLE osm_adresy FROM import0;
-GRANT ALL ON TABLE osm_adresy TO import0;
 GRANT SELECT ON TABLE osm_adresy TO PUBLIC;
 
 

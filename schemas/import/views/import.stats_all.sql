@@ -2,19 +2,24 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
 SET default_tablespace = '';
 
 --
--- Name: stats_all; Type: MATERIALIZED VIEW; Schema: import; Owner: import0; Tablespace: 
+-- Name: stats_all; Type: MATERIALIZED VIEW; Schema: import; Owner: import0
 --
 
 CREATE MATERIALIZED VIEW stats_all AS
@@ -31,7 +36,7 @@ CREATE MATERIALIZED VIEW stats_all AS
     duch.pocet_celkem AS pocet_so,
     duch.pocet_duchove AS pocet_duchu,
         CASE
-            WHEN (((duch.pocet_duchove IS NOT NULL) AND (duch.pocet_duchove > 0)) AND (duch.pocet_celkem IS NOT NULL)) THEN (round(((((duch.pocet_duchove)::real / (duch.pocet_celkem)::real) * (100)::real))::double precision))::integer
+            WHEN ((duch.pocet_duchove IS NOT NULL) AND (duch.pocet_duchove > 0) AND (duch.pocet_celkem IS NOT NULL)) THEN (round(((((duch.pocet_duchove)::real / (duch.pocet_celkem)::real) * (100)::real))::double precision))::integer
             ELSE NULL::integer
         END AS procent_duchu
    FROM (( SELECT count(*) AS celkem,
@@ -59,9 +64,6 @@ ALTER TABLE stats_all OWNER TO import0;
 -- Name: stats_all; Type: ACL; Schema: import; Owner: import0
 --
 
-REVOKE ALL ON TABLE stats_all FROM PUBLIC;
-REVOKE ALL ON TABLE stats_all FROM import0;
-GRANT ALL ON TABLE stats_all TO import0;
 GRANT SELECT ON TABLE stats_all TO PUBLIC;
 
 

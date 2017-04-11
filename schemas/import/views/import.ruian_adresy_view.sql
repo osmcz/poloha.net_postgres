@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
@@ -82,9 +87,6 @@ ALTER TABLE ruian_adresy_view OWNER TO import;
 -- Name: ruian_adresy_view; Type: ACL; Schema: import; Owner: import
 --
 
-REVOKE ALL ON TABLE ruian_adresy_view FROM PUBLIC;
-REVOKE ALL ON TABLE ruian_adresy_view FROM import;
-GRANT ALL ON TABLE ruian_adresy_view TO import;
 GRANT SELECT ON TABLE ruian_adresy_view TO PUBLIC;
 
 

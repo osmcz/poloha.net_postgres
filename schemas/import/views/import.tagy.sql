@@ -2,19 +2,24 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
 SET default_tablespace = '';
 
 --
--- Name: tagy; Type: MATERIALIZED VIEW; Schema: import; Owner: pedro; Tablespace: 
+-- Name: tagy; Type: MATERIALIZED VIEW; Schema: import; Owner: pedro
 --
 
 CREATE MATERIALIZED VIEW tagy AS
@@ -46,9 +51,6 @@ ALTER TABLE tagy OWNER TO pedro;
 -- Name: tagy; Type: ACL; Schema: import; Owner: pedro
 --
 
-REVOKE ALL ON TABLE tagy FROM PUBLIC;
-REVOKE ALL ON TABLE tagy FROM pedro;
-GRANT ALL ON TABLE tagy TO pedro;
 GRANT SELECT ON TABLE tagy TO PUBLIC;
 
 

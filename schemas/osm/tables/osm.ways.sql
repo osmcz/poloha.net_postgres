@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ways; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: ways; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE ways (
@@ -32,7 +37,7 @@ CREATE TABLE ways (
 ALTER TABLE ways OWNER TO osm;
 
 --
--- Name: ways_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: ways ways_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY ways
@@ -40,21 +45,21 @@ ALTER TABLE ONLY ways
 
 
 --
--- Name: ways_changeset_id_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: ways_changeset_id_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX ways_changeset_id_idx ON ways USING btree (changeset_id);
 
 
 --
--- Name: ways_timestamp_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: ways_timestamp_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX ways_timestamp_idx ON ways USING btree ("timestamp");
 
 
 --
--- Name: ways_changeset_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: ways ways_changeset_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY ways
@@ -62,7 +67,7 @@ ALTER TABLE ONLY ways
 
 
 --
--- Name: ways_redaction_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: ways ways_redaction_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY ways
@@ -73,9 +78,6 @@ ALTER TABLE ONLY ways
 -- Name: ways; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE ways FROM PUBLIC;
-REVOKE ALL ON TABLE ways FROM osm;
-GRANT ALL ON TABLE ways TO osm;
 GRANT SELECT ON TABLE ways TO PUBLIC;
 
 

@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: current_relations; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: current_relations; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE current_relations (
@@ -53,14 +58,14 @@ ALTER SEQUENCE current_relations_id_seq OWNED BY current_relations.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: current_relations id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY current_relations ALTER COLUMN id SET DEFAULT nextval('current_relations_id_seq'::regclass);
 
 
 --
--- Name: current_relations_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: current_relations current_relations_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY current_relations
@@ -68,7 +73,7 @@ ALTER TABLE ONLY current_relations
 
 
 --
--- Name: delete_relation; Type: TRIGGER; Schema: osm; Owner: osm
+-- Name: current_relations delete_relation; Type: TRIGGER; Schema: osm; Owner: osm
 --
 
 CREATE TRIGGER delete_relation BEFORE DELETE ON current_relations FOR EACH ROW EXECUTE PROCEDURE delete_relations();
@@ -80,9 +85,6 @@ ALTER TABLE current_relations DISABLE TRIGGER delete_relation;
 -- Name: current_relations; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE current_relations FROM PUBLIC;
-REVOKE ALL ON TABLE current_relations FROM osm;
-GRANT ALL ON TABLE current_relations TO osm;
 GRANT SELECT ON TABLE current_relations TO PUBLIC;
 
 

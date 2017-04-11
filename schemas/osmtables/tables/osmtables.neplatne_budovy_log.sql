@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osmtables, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: neplatne_budovy_log; Type: TABLE; Schema: osmtables; Owner: pedro; Tablespace: 
+-- Name: neplatne_budovy_log; Type: TABLE; Schema: osmtables; Owner: pedro
 --
 
 CREATE TABLE neplatne_budovy_log (
@@ -62,7 +67,7 @@ ALTER SEQUENCE neplatne_budovy_log_id_seq OWNED BY neplatne_budovy_log.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osmtables; Owner: pedro
+-- Name: neplatne_budovy_log id; Type: DEFAULT; Schema: osmtables; Owner: pedro
 --
 
 ALTER TABLE ONLY neplatne_budovy_log ALTER COLUMN id SET DEFAULT nextval('neplatne_budovy_log_id_seq'::regclass);
@@ -72,9 +77,6 @@ ALTER TABLE ONLY neplatne_budovy_log ALTER COLUMN id SET DEFAULT nextval('neplat
 -- Name: neplatne_budovy_log; Type: ACL; Schema: osmtables; Owner: pedro
 --
 
-REVOKE ALL ON TABLE neplatne_budovy_log FROM PUBLIC;
-REVOKE ALL ON TABLE neplatne_budovy_log FROM pedro;
-GRANT ALL ON TABLE neplatne_budovy_log TO pedro;
 GRANT SELECT ON TABLE neplatne_budovy_log TO PUBLIC;
 GRANT SELECT,INSERT ON TABLE neplatne_budovy_log TO hlasenibudov;
 
@@ -83,9 +85,6 @@ GRANT SELECT,INSERT ON TABLE neplatne_budovy_log TO hlasenibudov;
 -- Name: neplatne_budovy_log_id_seq; Type: ACL; Schema: osmtables; Owner: pedro
 --
 
-REVOKE ALL ON SEQUENCE neplatne_budovy_log_id_seq FROM PUBLIC;
-REVOKE ALL ON SEQUENCE neplatne_budovy_log_id_seq FROM pedro;
-GRANT ALL ON SEQUENCE neplatne_budovy_log_id_seq TO pedro;
 GRANT ALL ON SEQUENCE neplatne_budovy_log_id_seq TO hlasenibudov;
 
 

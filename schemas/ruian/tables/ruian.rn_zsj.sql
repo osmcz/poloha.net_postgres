@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = ruian, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: rn_zsj; Type: TABLE; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_zsj; Type: TABLE; Schema: ruian; Owner: ruian
 --
 
 CREATE TABLE rn_zsj (
@@ -46,7 +51,7 @@ CREATE TABLE rn_zsj (
 ALTER TABLE rn_zsj OWNER TO ruian;
 
 --
--- Name: rn_zsj_pkey; Type: CONSTRAINT; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_zsj rn_zsj_pkey; Type: CONSTRAINT; Schema: ruian; Owner: ruian
 --
 
 ALTER TABLE ONLY rn_zsj
@@ -54,28 +59,28 @@ ALTER TABLE ONLY rn_zsj
 
 
 --
--- Name: rn_zsj_definicni_bod_idx; Type: INDEX; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_zsj_definicni_bod_idx; Type: INDEX; Schema: ruian; Owner: ruian
 --
 
 CREATE INDEX rn_zsj_definicni_bod_idx ON rn_zsj USING gist (definicni_bod);
 
 
 --
--- Name: rn_zsj_hranice_idx; Type: INDEX; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_zsj_hranice_idx; Type: INDEX; Schema: ruian; Owner: ruian
 --
 
 CREATE INDEX rn_zsj_hranice_idx ON rn_zsj USING gist (hranice);
 
 
 --
--- Name: rn_zsj_katuz_kod_idx; Type: INDEX; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_zsj_katuz_kod_idx; Type: INDEX; Schema: ruian; Owner: ruian
 --
 
 CREATE INDEX rn_zsj_katuz_kod_idx ON rn_zsj USING btree (katuz_kod);
 
 
 --
--- Name: save_query; Type: TRIGGER; Schema: ruian; Owner: ruian
+-- Name: rn_zsj save_query; Type: TRIGGER; Schema: ruian; Owner: ruian
 --
 
 CREATE TRIGGER save_query BEFORE INSERT ON rn_zsj FOR EACH ROW EXECUTE PROCEDURE public.save_query();
@@ -87,9 +92,6 @@ ALTER TABLE rn_zsj DISABLE TRIGGER save_query;
 -- Name: rn_zsj; Type: ACL; Schema: ruian; Owner: ruian
 --
 
-REVOKE ALL ON TABLE rn_zsj FROM PUBLIC;
-REVOKE ALL ON TABLE rn_zsj FROM ruian;
-GRANT ALL ON TABLE rn_zsj TO ruian;
 GRANT SELECT ON TABLE rn_zsj TO PUBLIC;
 
 

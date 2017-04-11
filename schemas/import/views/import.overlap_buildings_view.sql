@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
@@ -33,10 +38,10 @@ CREATE VIEW overlap_buildings_view AS
         CASE
             WHEN (tbl.a_osm_id > 0) THEN (tbl.a_osm_id IN ( SELECT current_way_tags.way_id
                FROM osm.current_way_tags
-              WHERE ((((((current_way_tags.k)::text = 'building:part'::text) OR ((current_way_tags.k)::text = 'min_height'::text)) OR ((current_way_tags.k)::text = 'height'::text)) OR ((current_way_tags.k)::text = 'building:min_level'::text)) AND (current_way_tags.way_id = tbl.a_osm_id))))
+              WHERE ((((current_way_tags.k)::text = 'building:part'::text) OR ((current_way_tags.k)::text = 'min_height'::text) OR ((current_way_tags.k)::text = 'height'::text) OR ((current_way_tags.k)::text = 'building:min_level'::text)) AND (current_way_tags.way_id = tbl.a_osm_id))))
             ELSE ((- tbl.a_osm_id) IN ( SELECT current_relation_tags.relation_id
                FROM osm.current_relation_tags
-              WHERE ((((((current_relation_tags.k)::text = 'building:part'::text) OR ((current_relation_tags.k)::text = 'min_height'::text)) OR ((current_relation_tags.k)::text = 'height'::text)) OR ((current_relation_tags.k)::text = 'building:min_level'::text)) AND (current_relation_tags.relation_id = (- tbl.a_osm_id)))))
+              WHERE ((((current_relation_tags.k)::text = 'building:part'::text) OR ((current_relation_tags.k)::text = 'min_height'::text) OR ((current_relation_tags.k)::text = 'height'::text) OR ((current_relation_tags.k)::text = 'building:min_level'::text)) AND (current_relation_tags.relation_id = (- tbl.a_osm_id)))))
         END AS a_in3d,
     tbl.b_osm_id,
     tbl.b_prekryva_budov,
@@ -55,10 +60,10 @@ CREATE VIEW overlap_buildings_view AS
         CASE
             WHEN (tbl.b_osm_id > 0) THEN (tbl.b_osm_id IN ( SELECT current_way_tags.way_id
                FROM osm.current_way_tags
-              WHERE ((((((current_way_tags.k)::text = 'building:part'::text) OR ((current_way_tags.k)::text = 'min_height'::text)) OR ((current_way_tags.k)::text = 'height'::text)) OR ((current_way_tags.k)::text = 'building:min_level'::text)) AND (current_way_tags.way_id = tbl.b_osm_id))))
+              WHERE ((((current_way_tags.k)::text = 'building:part'::text) OR ((current_way_tags.k)::text = 'min_height'::text) OR ((current_way_tags.k)::text = 'height'::text) OR ((current_way_tags.k)::text = 'building:min_level'::text)) AND (current_way_tags.way_id = tbl.b_osm_id))))
             ELSE ((- tbl.b_osm_id) IN ( SELECT current_relation_tags.relation_id
                FROM osm.current_relation_tags
-              WHERE ((((((current_relation_tags.k)::text = 'building:part'::text) OR ((current_relation_tags.k)::text = 'min_height'::text)) OR ((current_relation_tags.k)::text = 'height'::text)) OR ((current_relation_tags.k)::text = 'building:min_level'::text)) AND (current_relation_tags.relation_id = (- tbl.b_osm_id)))))
+              WHERE ((((current_relation_tags.k)::text = 'building:part'::text) OR ((current_relation_tags.k)::text = 'min_height'::text) OR ((current_relation_tags.k)::text = 'height'::text) OR ((current_relation_tags.k)::text = 'building:min_level'::text)) AND (current_relation_tags.relation_id = (- tbl.b_osm_id)))))
         END AS b_in3d,
     tbl.procent
    FROM ((((((((((((overlap_buildings tbl
@@ -82,9 +87,6 @@ ALTER TABLE overlap_buildings_view OWNER TO pedro;
 -- Name: overlap_buildings_view; Type: ACL; Schema: import; Owner: pedro
 --
 
-REVOKE ALL ON TABLE overlap_buildings_view FROM PUBLIC;
-REVOKE ALL ON TABLE overlap_buildings_view FROM pedro;
-GRANT ALL ON TABLE overlap_buildings_view TO pedro;
 GRANT SELECT ON TABLE overlap_buildings_view TO PUBLIC;
 
 

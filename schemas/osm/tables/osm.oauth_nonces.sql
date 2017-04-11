@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: oauth_nonces; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: oauth_nonces; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE oauth_nonces (
@@ -52,14 +57,14 @@ ALTER SEQUENCE oauth_nonces_id_seq OWNED BY oauth_nonces.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: oauth_nonces id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_nonces ALTER COLUMN id SET DEFAULT nextval('oauth_nonces_id_seq'::regclass);
 
 
 --
--- Name: oauth_nonces_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: oauth_nonces oauth_nonces_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_nonces
@@ -67,7 +72,7 @@ ALTER TABLE ONLY oauth_nonces
 
 
 --
--- Name: index_oauth_nonces_on_nonce_and_timestamp; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: index_oauth_nonces_on_nonce_and_timestamp; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX index_oauth_nonces_on_nonce_and_timestamp ON oauth_nonces USING btree (nonce, "timestamp");
@@ -77,9 +82,6 @@ CREATE UNIQUE INDEX index_oauth_nonces_on_nonce_and_timestamp ON oauth_nonces US
 -- Name: oauth_nonces; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE oauth_nonces FROM PUBLIC;
-REVOKE ALL ON TABLE oauth_nonces FROM osm;
-GRANT ALL ON TABLE oauth_nonces TO osm;
 GRANT SELECT ON TABLE oauth_nonces TO PUBLIC;
 
 

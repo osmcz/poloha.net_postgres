@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: oauth_tokens; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: oauth_tokens; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE oauth_tokens (
@@ -68,14 +73,14 @@ ALTER SEQUENCE oauth_tokens_id_seq OWNED BY oauth_tokens.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: oauth_tokens id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_tokens_id_seq'::regclass);
 
 
 --
--- Name: oauth_tokens_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: oauth_tokens oauth_tokens_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_tokens
@@ -83,14 +88,14 @@ ALTER TABLE ONLY oauth_tokens
 
 
 --
--- Name: index_oauth_tokens_on_token; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: index_oauth_tokens_on_token; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX index_oauth_tokens_on_token ON oauth_tokens USING btree (token);
 
 
 --
--- Name: oauth_tokens_client_application_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: oauth_tokens oauth_tokens_client_application_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_tokens
@@ -98,7 +103,7 @@ ALTER TABLE ONLY oauth_tokens
 
 
 --
--- Name: oauth_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: oauth_tokens oauth_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY oauth_tokens
@@ -109,9 +114,6 @@ ALTER TABLE ONLY oauth_tokens
 -- Name: oauth_tokens; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE oauth_tokens FROM PUBLIC;
-REVOKE ALL ON TABLE oauth_tokens FROM osm;
-GRANT ALL ON TABLE oauth_tokens TO osm;
 GRANT SELECT ON TABLE oauth_tokens TO PUBLIC;
 
 

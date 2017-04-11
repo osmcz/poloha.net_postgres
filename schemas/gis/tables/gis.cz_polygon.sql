@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = gis, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: cz_polygon; Type: TABLE; Schema: gis; Owner: mapnik; Tablespace: 
+-- Name: cz_polygon; Type: TABLE; Schema: gis; Owner: mapnik
 --
 
 CREATE TABLE cz_polygon (
@@ -134,14 +139,16 @@ WITH (autovacuum_vacuum_scale_factor='0.02', autovacuum_analyze_scale_factor='0.
 ALTER TABLE cz_polygon OWNER TO mapnik;
 
 --
--- Name: cz_polygon_index; Type: INDEX; Schema: gis; Owner: mapnik; Tablespace: 
+-- Name: cz_polygon_index; Type: INDEX; Schema: gis; Owner: mapnik
 --
 
 CREATE INDEX cz_polygon_index ON cz_polygon USING gist (way);
 
+ALTER TABLE cz_polygon CLUSTER ON cz_polygon_index;
+
 
 --
--- Name: cz_polygon_pkey; Type: INDEX; Schema: gis; Owner: mapnik; Tablespace: 
+-- Name: cz_polygon_pkey; Type: INDEX; Schema: gis; Owner: mapnik
 --
 
 CREATE INDEX cz_polygon_pkey ON cz_polygon USING btree (osm_id);
@@ -151,9 +158,6 @@ CREATE INDEX cz_polygon_pkey ON cz_polygon USING btree (osm_id);
 -- Name: cz_polygon; Type: ACL; Schema: gis; Owner: mapnik
 --
 
-REVOKE ALL ON TABLE cz_polygon FROM PUBLIC;
-REVOKE ALL ON TABLE cz_polygon FROM mapnik;
-GRANT ALL ON TABLE cz_polygon TO mapnik;
 GRANT SELECT ON TABLE cz_polygon TO PUBLIC;
 
 

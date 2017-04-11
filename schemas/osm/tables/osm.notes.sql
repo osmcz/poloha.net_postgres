@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: notes; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: notes; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE notes (
@@ -55,14 +60,14 @@ ALTER SEQUENCE notes_id_seq OWNED BY notes.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: notes id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY notes ALTER COLUMN id SET DEFAULT nextval('notes_id_seq'::regclass);
 
 
 --
--- Name: notes_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: notes notes_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY notes
@@ -70,21 +75,21 @@ ALTER TABLE ONLY notes
 
 
 --
--- Name: notes_created_at_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: notes_created_at_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX notes_created_at_idx ON notes USING btree (created_at);
 
 
 --
--- Name: notes_tile_status_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: notes_tile_status_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX notes_tile_status_idx ON notes USING btree (tile, status);
 
 
 --
--- Name: notes_updated_at_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: notes_updated_at_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX notes_updated_at_idx ON notes USING btree (updated_at);
@@ -94,9 +99,6 @@ CREATE INDEX notes_updated_at_idx ON notes USING btree (updated_at);
 -- Name: notes; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE notes FROM PUBLIC;
-REVOKE ALL ON TABLE notes FROM osm;
-GRANT ALL ON TABLE notes TO osm;
 GRANT SELECT ON TABLE notes TO PUBLIC;
 
 

@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = ruian, pg_catalog;
 
@@ -128,7 +133,13 @@ CREATE VIEW ruian_stats AS
             rn_zsj.definicni_bod,
             rn_zsj.hranice
            FROM rn_zsj
-          WHERE (rn_zsj.deleted = false)) t
+          WHERE (rn_zsj.deleted = false)
+        UNION ALL
+         SELECT 'rn_vo'::text AS text,
+            rn_vo.definicni_bod,
+            rn_vo.hranice
+           FROM rn_vo
+          WHERE (rn_vo.deleted = false)) t
   GROUP BY t.table_name
   ORDER BY t.table_name;
 
@@ -139,9 +150,6 @@ ALTER TABLE ruian_stats OWNER TO ruian;
 -- Name: ruian_stats; Type: ACL; Schema: ruian; Owner: ruian
 --
 
-REVOKE ALL ON TABLE ruian_stats FROM PUBLIC;
-REVOKE ALL ON TABLE ruian_stats FROM ruian;
-GRANT ALL ON TABLE ruian_stats TO ruian;
 GRANT SELECT ON TABLE ruian_stats TO PUBLIC;
 
 

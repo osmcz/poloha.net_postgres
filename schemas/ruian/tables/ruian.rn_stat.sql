@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = ruian, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: rn_stat; Type: TABLE; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_stat; Type: TABLE; Schema: ruian; Owner: ruian
 --
 
 CREATE TABLE rn_stat (
@@ -38,7 +43,7 @@ CREATE TABLE rn_stat (
 ALTER TABLE rn_stat OWNER TO ruian;
 
 --
--- Name: rn_stat_pkey; Type: CONSTRAINT; Schema: ruian; Owner: ruian; Tablespace: 
+-- Name: rn_stat rn_stat_pkey; Type: CONSTRAINT; Schema: ruian; Owner: ruian
 --
 
 ALTER TABLE ONLY rn_stat
@@ -49,9 +54,6 @@ ALTER TABLE ONLY rn_stat
 -- Name: rn_stat; Type: ACL; Schema: ruian; Owner: ruian
 --
 
-REVOKE ALL ON TABLE rn_stat FROM PUBLIC;
-REVOKE ALL ON TABLE rn_stat FROM ruian;
-GRANT ALL ON TABLE rn_stat TO ruian;
 GRANT SELECT ON TABLE rn_stat TO PUBLIC;
 
 

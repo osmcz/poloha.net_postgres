@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = import, pg_catalog;
 
@@ -61,10 +66,6 @@ ALTER FUNCTION import.update_building_source_stat() OWNER TO pedro;
 -- Name: update_building_source_stat(); Type: ACL; Schema: import; Owner: pedro
 --
 
-REVOKE ALL ON FUNCTION update_building_source_stat() FROM PUBLIC;
-REVOKE ALL ON FUNCTION update_building_source_stat() FROM pedro;
-GRANT ALL ON FUNCTION update_building_source_stat() TO pedro;
-GRANT ALL ON FUNCTION update_building_source_stat() TO PUBLIC;
 GRANT ALL ON FUNCTION update_building_source_stat() TO osm;
 
 

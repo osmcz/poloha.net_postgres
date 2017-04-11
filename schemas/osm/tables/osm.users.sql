@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = true;
 
 --
--- Name: users; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE users (
@@ -78,14 +83,14 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: users id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY users
@@ -93,35 +98,35 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users_auth_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users_auth_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX users_auth_idx ON users USING btree (auth_provider, auth_uid);
 
 
 --
--- Name: users_display_name_lower_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users_display_name_lower_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX users_display_name_lower_idx ON users USING btree (lower((display_name)::text));
 
 
 --
--- Name: users_email_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users_email_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX users_email_idx ON users USING btree (email);
 
 
 --
--- Name: users_email_lower_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: users_email_lower_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX users_email_lower_idx ON users USING btree (lower((email)::text));
 
 
 --
--- Name: users_suspend; Type: TRIGGER; Schema: osm; Owner: osm
+-- Name: users users_suspend; Type: TRIGGER; Schema: osm; Owner: osm
 --
 
 CREATE TRIGGER users_suspend BEFORE INSERT OR UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE users_suspend();
@@ -131,9 +136,6 @@ CREATE TRIGGER users_suspend BEFORE INSERT OR UPDATE ON users FOR EACH ROW EXECU
 -- Name: users; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE users FROM PUBLIC;
-REVOKE ALL ON TABLE users FROM osm;
-GRANT ALL ON TABLE users TO osm;
 GRANT SELECT ON TABLE users TO PUBLIC;
 
 

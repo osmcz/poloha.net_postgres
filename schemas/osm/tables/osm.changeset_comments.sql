@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: changeset_comments; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: changeset_comments; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE changeset_comments (
@@ -53,14 +58,14 @@ ALTER SEQUENCE changeset_comments_id_seq OWNED BY changeset_comments.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: changeset_comments id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY changeset_comments ALTER COLUMN id SET DEFAULT nextval('changeset_comments_id_seq'::regclass);
 
 
 --
--- Name: changeset_comments_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: changeset_comments changeset_comments_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY changeset_comments
@@ -68,14 +73,14 @@ ALTER TABLE ONLY changeset_comments
 
 
 --
--- Name: index_changeset_comments_on_created_at; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: index_changeset_comments_on_created_at; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX index_changeset_comments_on_created_at ON changeset_comments USING btree (created_at);
 
 
 --
--- Name: changeset_comments_author_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: changeset_comments changeset_comments_author_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY changeset_comments
@@ -83,7 +88,7 @@ ALTER TABLE ONLY changeset_comments
 
 
 --
--- Name: changeset_comments_changeset_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: changeset_comments changeset_comments_changeset_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY changeset_comments
@@ -94,9 +99,6 @@ ALTER TABLE ONLY changeset_comments
 -- Name: changeset_comments; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE changeset_comments FROM PUBLIC;
-REVOKE ALL ON TABLE changeset_comments FROM osm;
-GRANT ALL ON TABLE changeset_comments TO osm;
 GRANT SELECT ON TABLE changeset_comments TO PUBLIC;
 
 

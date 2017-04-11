@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = osm, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: user_tokens; Type: TABLE; Schema: osm; Owner: osm; Tablespace: 
+-- Name: user_tokens; Type: TABLE; Schema: osm; Owner: osm
 --
 
 CREATE TABLE user_tokens (
@@ -52,14 +57,14 @@ ALTER SEQUENCE user_tokens_id_seq OWNED BY user_tokens.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: osm; Owner: osm
+-- Name: user_tokens id; Type: DEFAULT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY user_tokens ALTER COLUMN id SET DEFAULT nextval('user_tokens_id_seq'::regclass);
 
 
 --
--- Name: user_tokens_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm; Tablespace: 
+-- Name: user_tokens user_tokens_pkey; Type: CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY user_tokens
@@ -67,21 +72,21 @@ ALTER TABLE ONLY user_tokens
 
 
 --
--- Name: user_tokens_token_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: user_tokens_token_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE UNIQUE INDEX user_tokens_token_idx ON user_tokens USING btree (token);
 
 
 --
--- Name: user_tokens_user_id_idx; Type: INDEX; Schema: osm; Owner: osm; Tablespace: 
+-- Name: user_tokens_user_id_idx; Type: INDEX; Schema: osm; Owner: osm
 --
 
 CREATE INDEX user_tokens_user_id_idx ON user_tokens USING btree (user_id);
 
 
 --
--- Name: user_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
+-- Name: user_tokens user_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: osm; Owner: osm
 --
 
 ALTER TABLE ONLY user_tokens
@@ -92,9 +97,6 @@ ALTER TABLE ONLY user_tokens
 -- Name: user_tokens; Type: ACL; Schema: osm; Owner: osm
 --
 
-REVOKE ALL ON TABLE user_tokens FROM PUBLIC;
-REVOKE ALL ON TABLE user_tokens FROM osm;
-GRANT ALL ON TABLE user_tokens TO osm;
 GRANT SELECT ON TABLE user_tokens TO PUBLIC;
 
 

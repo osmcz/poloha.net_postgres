@@ -2,12 +2,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'LATIN2';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -16,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: lampy; Type: TABLE; Schema: public; Owner: pedro; Tablespace: 
+-- Name: lampy; Type: TABLE; Schema: public; Owner: pedro
 --
 
 CREATE TABLE lampy (
@@ -69,14 +74,14 @@ ALTER SEQUENCE lampy_gid_seq OWNED BY lampy.gid;
 
 
 --
--- Name: gid; Type: DEFAULT; Schema: public; Owner: pedro
+-- Name: lampy gid; Type: DEFAULT; Schema: public; Owner: pedro
 --
 
 ALTER TABLE ONLY lampy ALTER COLUMN gid SET DEFAULT nextval('lampy_gid_seq'::regclass);
 
 
 --
--- Name: lampy_pkey; Type: CONSTRAINT; Schema: public; Owner: pedro; Tablespace: 
+-- Name: lampy lampy_pkey; Type: CONSTRAINT; Schema: public; Owner: pedro
 --
 
 ALTER TABLE ONLY lampy
@@ -87,9 +92,6 @@ ALTER TABLE ONLY lampy
 -- Name: lampy; Type: ACL; Schema: public; Owner: pedro
 --
 
-REVOKE ALL ON TABLE lampy FROM PUBLIC;
-REVOKE ALL ON TABLE lampy FROM pedro;
-GRANT ALL ON TABLE lampy TO pedro;
 GRANT SELECT ON TABLE lampy TO PUBLIC;
 
 
