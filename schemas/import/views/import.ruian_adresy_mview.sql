@@ -52,7 +52,7 @@ CREATE MATERIALIZED VIEW ruian_adresy_mview AS
             ELSE parcela.definicni_bod
         END AS geom,
     okres.nazev AS okres,
-    addr.item_timestamp,
+    GREATEST(addr.item_timestamp, ulice.item_timestamp, castobce.item_timestamp) AS item_timestamp,
     momc.nazev AS mestska_cast,
     NULL::text AS is_in,
     addr.ulice_kod,
