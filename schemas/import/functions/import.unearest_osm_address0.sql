@@ -33,7 +33,7 @@ v_osmid bigint;
 v_maxdistance real;
 v_co import.co;
 BEGIN
-v_maxdistance=80;
+v_maxdistance=800;
 select into v_ruiangeom,v_cislo_popisne,v_cislo_evidencni,v_cislo_orientacni,v_ulice
 geom,cislo_popisne,cislo_evidencni,cislo_orientacni,ulice
 from import.ruian_adresy_dview
